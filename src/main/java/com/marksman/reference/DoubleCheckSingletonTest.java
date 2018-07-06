@@ -4,6 +4,11 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 测试并发访问双重检验锁实现的单例模式
+ *
+ */
+
 public class DoubleCheckSingletonTest {
 	
 	public static void main(String[] args) {
