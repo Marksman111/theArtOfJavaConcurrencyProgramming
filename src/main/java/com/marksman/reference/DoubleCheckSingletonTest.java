@@ -5,7 +5,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 测试并发访问双重检验锁实现的单例模式
+ * 测试并发访问双重检验锁实现的单例模式(我的第一篇技术博客中需测试的问题)
+ * 	不理解CountDownLatch类，暂未解决
  *
  */
 
