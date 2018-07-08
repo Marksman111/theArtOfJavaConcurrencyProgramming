@@ -45,7 +45,6 @@ public class SimpleHttpServer {
             this.socket = socket;
         }
 
-        @Override
         public void run() {
             String line = null;
             BufferedReader br = null;

@@ -39,7 +39,6 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job>{
         initializeWorkers(num);
     }
 
-    @Override
     public void execute(Job job) {
         if (job != null){
             synchronized (jobs){
@@ -49,14 +48,12 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job>{
         }
     }
 
-    @Override
     public void shutdown() {
         for (Worker worker: workers){
             worker.shutdown();
         }
     }
 
-    @Override
     public void addWorkers(int num) {
         synchronized (jobs){
             if (num + this.workerNum>MAX_WORKER_NUMBER){
@@ -67,7 +64,6 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job>{
         this.workerNum += num;
     }
 
-    @Override
     public void removeWorker(int num) throws IllegalAccessException {
         synchronized (jobs){
             if (num >= this.workerNum){
@@ -85,7 +81,6 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job>{
         this.workerNum -= count;
     }
 
-    @Override
     public int getJobSize() {
         return jobs.size();
     }
@@ -103,7 +98,6 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job>{
     class Worker implements Runnable{
 
         private volatile boolean running = true;
-        @Override
         public void run() {
             while (true){
                 Job job = null;
