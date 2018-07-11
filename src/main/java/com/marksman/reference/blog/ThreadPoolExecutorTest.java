@@ -25,7 +25,7 @@ public class ThreadPoolExecutorTest {
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
         //每次执行一个任务，同步执行
-        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+       /* ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 10; i++){
             final int index = i;
             singleThreadExecutor.execute(new Runnable() {
@@ -39,6 +39,6 @@ public class ThreadPoolExecutorTest {
                     }
                 }
             });
-        }
+        }*/
     }
 }
