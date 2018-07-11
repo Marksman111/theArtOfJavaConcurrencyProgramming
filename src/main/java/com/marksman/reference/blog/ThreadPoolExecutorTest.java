@@ -12,20 +12,23 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class ThreadPoolExecutorTest {
 
     public static void main(String[] args){
-        int corePoolSize = 10;
+        /*int corePoolSize = 10;
         int maximumPoolSize = 20;
         long keepAliveTime = 1000;
         TimeUnit timeUnit = null;
         BlockingQueue<Runnable> workQueue = null;
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,timeUnit,workQueue);
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,timeUnit,workQueue);*/
 
-        ScheduledExecutorService scheduleThreadPool = Executors.newScheduledThreadPool(3);
-        scheduleThreadPool.scheduleAtFixedRate(()->System.out.println(Thread.currentThread().getName() + ": delay 1 seconds,and execute every 3 seconds"),1,3, SECONDS);
+        //ScheduledExecutorService scheduleThreadPool = Executors.newScheduledThreadPool(3);
+        //scheduleThreadPool.scheduleAtFixedRate(()->System.out.println(Thread.currentThread().getName() + ": delay 1 seconds,and execute every 3 seconds"),1,3, SECONDS);
 
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+
+        //每次执行一个任务，同步执行
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 10; i++){
             final int index = i;
-            scheduleThreadPool.execute(new Runnable() {
+            singleThreadExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
                     try {
