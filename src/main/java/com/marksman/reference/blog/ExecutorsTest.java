@@ -88,6 +88,16 @@ public class ExecutorsTest {
                 ":delay 1 seconds,and execute every 3 seconds"),1,3,TimeUnit.SECONDS);
     }
 
+    /**
+     * @author  weilb
+     * @date  2018/7/11
+     * @params  []
+     * @returns void
+     * @description  核心池和线程池的大小都是1，存活时间无限制，任务队列为：LinkedBlockingQueue。
+     *               优点：线程池中一直存在一个线程，任务按顺序执行，后来的任务在队列里排队等待
+     *               缺点：
+     *               适用场景：线程安全无并发执行任务
+     */
     public static void singleThreadExecutorTest(){
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
         for (int i = 0;i < 10; i++){
