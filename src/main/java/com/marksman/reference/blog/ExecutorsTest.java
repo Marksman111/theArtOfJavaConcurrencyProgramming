@@ -28,7 +28,7 @@ public class ExecutorsTest {
      *               线程的存活时间为60秒，任务队列为同步队列：SynchronousQueue。
      *               优点：有任务来时就创建一个线程，没有任务时，60秒后就销毁线程，这样节约系统资源
      *               缺点：若偶尔(超过60秒)来一个新任务，那就需要每次都创建线程，速度就会慢下来且销耗系统资源
-     *               适用场景：系统资源不够充足、大量任务并且处理时间短
+     *               适用场景：系统资源不够充足，负载较轻、大量异步任务并且处理所需时间短
      */
     public static void cachedThreadPoolTest(){
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
@@ -53,7 +53,7 @@ public class ExecutorsTest {
      *               缺点：线程池大小固定，随着业务量的变化，改起来不方便
      *               适用场景：一定数量的任务，执行所需时间长
      */
-    public static void fixedThreadTest(){
+    public static void fixedThreadPoolTest(){
         ExecutorService fixdThreadPool = Executors.newFixedThreadPool(3);
         for (int i = 0;i < 10; i++){
             final int index = i;
@@ -95,8 +95,8 @@ public class ExecutorsTest {
      * @returns void
      * @description  核心池和线程池的大小都是1，存活时间无限制，任务队列为：LinkedBlockingQueue。
      *               优点：线程池中一直存在一个线程，任务按顺序执行，后来的任务在队列里排队等待
-     *               缺点：
-     *               适用场景：线程安全无并发执行任务
+     *               缺点：单个线程效率低
+     *               适用场景：需要各个任务按顺序并且无并发的执行
      */
     public static void singleThreadExecutorTest(){
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
