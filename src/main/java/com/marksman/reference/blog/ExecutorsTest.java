@@ -15,8 +15,8 @@ public class ExecutorsTest {
     public static void main(String[] args){
         //cachedThreadPoolTest();
         //fixedThreadPoolTest();
-        scheduledThreadPoolTest();
-        //singleThreadExecutorTest();
+        //scheduledThreadPoolTest();
+        singleThreadExecutorTest();
     }
 
     /**
@@ -49,7 +49,7 @@ public class ExecutorsTest {
      * @params  []
      * @returns void
      * @description  核心池和最大线程池大小都是传入的参数的值，存活时间无限制，任务队列是无限制阻塞队列：LinkedBlockingQueue.
-     *               优点：可控制线程最大并发数，超出的线程会在队列中等待
+     *               优点：可控制线程最大并发数，多出的任务会在队列中等待
      *               缺点：线程池大小固定，随着业务量的变化，改起来不方便
      *               适用场景：一定数量的任务，执行所需时间长
      */
@@ -57,17 +57,7 @@ public class ExecutorsTest {
         ExecutorService fixdThreadPool = Executors.newFixedThreadPool(3);
         for (int i = 0;i < 10; i++){
             final int index = i;
-            fixdThreadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        System.out.println(Thread.currentThread().getName()+":"+index);
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            fixdThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()+":"+index));
         }
     }
 
@@ -102,17 +92,7 @@ public class ExecutorsTest {
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
         for (int i = 0;i < 10; i++){
             final int index = i;
-            singleThreadExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        System.out.println(Thread.currentThread().getName() + ":"+index);
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            singleThreadExecutor.execute(() -> System.out.println(Thread.currentThread().getName() + ":"+index));
         }
     }
 
