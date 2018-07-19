@@ -1,9 +1,6 @@
 package com.marksman.reference.blog;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author weilb
@@ -93,6 +90,20 @@ public class ExecutorsTest {
         for (int i = 0;i < 10; i++){
             final int index = i;
             singleThreadExecutor.execute(() -> System.out.println(Thread.currentThread().getName() + ":"+index));
+        }
+    }
+
+    public static void threadPoolExecutorTest(){
+        int corePoolSize = 3, maximumPoolSize = 5;
+        long keepAliveTime = 1;
+        TimeUnit unit = TimeUnit.SECONDS;
+        BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue(1);
+        RejectedExecutionHandler rejectedExecutionHandler = (Runnable r, ThreadPoolExecutor executor) -> System.out.println("其实我是拒绝的");
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
+                maximumPoolSize,keepAliveTime,unit,workQueue,rejectedExecutionHandler);
+        for (int i = 0; i < 10; i++){
+            int index = i;
+            threadPoolExecutor.execute(() -> System.out.println(Thread.currentThread().getName() + ":"+index));
         }
     }
 
