@@ -10,13 +10,23 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MyService {
 
     public synchronized static void serviceMethod1(){
-        System.out.println(Thread.currentThread().getName()+"进入了业务方法");
+        try {
+            System.out.println(Thread.currentThread().getName()+"进入了业务方法");
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void serviceMethod2(){
         ReentrantLock reentrantLock = new ReentrantLock();
         reentrantLock.lock();
         System.out.println(Thread.currentThread().getName()+"进入了业务方法");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         reentrantLock.unlock();
     }
 }
