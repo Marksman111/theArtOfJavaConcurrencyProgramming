@@ -1,5 +1,7 @@
 package com.marksman.reference;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author weilb
  * @date 2018/7/21
@@ -7,29 +9,14 @@ package com.marksman.reference;
  */
 public class MyService {
 
-    public synchronized static void serviceMethod(){
-        try{
-            System.out.println(Thread.currentThread().getName()+"进入了业务方法");
-            Thread.sleep(1000);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public synchronized static void serviceMethod1(){
+        System.out.println(Thread.currentThread().getName()+"进入了业务方法");
     }
 
-    class MyThread1 extends Thread{
-
-        @Override
-        public void run() {
-            MyService.serviceMethod();
-        }
+    public static void serviceMethod2(){
+        ReentrantLock reentrantLock = new ReentrantLock();
+        reentrantLock.lock();
+        System.out.println(Thread.currentThread().getName()+"进入了业务方法");
+        reentrantLock.unlock();
     }
-
-    class MyThread2 extends Thread{
-
-        @Override
-        public void run() {
-            MyService.serviceMethod();
-        }
-    }
-
 }
