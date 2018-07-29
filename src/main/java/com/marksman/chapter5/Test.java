@@ -8,8 +8,12 @@ package com.marksman.chapter5;
 public class Test {
 
     public static void main(String[] args){
-        for(;;){
-            System.out.println("锤子");
+        /*for(;;){
+            System.out.println("for个锤子");
+        }*/
+
+        while(true){
+            System.out.println("while个锤子");
         }
     }
 }
