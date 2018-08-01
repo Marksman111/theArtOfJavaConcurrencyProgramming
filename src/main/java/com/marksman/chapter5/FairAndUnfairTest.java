@@ -14,6 +14,10 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class FairAndUnfairTest {
 
+    public static void main(String[] args){
+        new FairAndUnfairTest().testLock(fairLock);
+    }
+
     private static Lock fairLock = new ReentrantLock2(true);
     private static Lock unfairLock = new ReentrantLock2(false);
 
@@ -26,7 +30,11 @@ public class FairAndUnfairTest {
     }
 
     private void testLock(Lock lock){
-
+        new Job(lock).start();
+        new Job(lock).start();
+        new Job(lock).start();
+        new Job(lock).start();
+        new Job(lock).start();
     }
 
     private static class Job extends Thread{
@@ -36,7 +44,8 @@ public class FairAndUnfairTest {
         }
 
         public void run(){
-
+            System.out.println("Lock by["+Thread.currentThread().getName()+"],  Waiting by"+new ReentrantLock2(true).getQueuedThreads());
+            System.out.println("Lock by["+Thread.currentThread().getName()+"],  Waiting by"+new ReentrantLock2(true).getQueuedThreads());
         }
     }
 
