@@ -1,5 +1,6 @@
 package com.marksman.reference;
 
+import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 /**
@@ -10,7 +11,7 @@ import java.util.concurrent.Callable;
 public class Test {
 
     public static void main(String[] args){
-
+        HashMap<String,Object> map = new HashMap<>();
     }
 
     public static void test1(){
