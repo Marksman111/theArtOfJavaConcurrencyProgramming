@@ -27,7 +27,6 @@ public class HashMapDemo {
         },"ftf");
         t.start();
         t.join();
-
     }
 
 }
