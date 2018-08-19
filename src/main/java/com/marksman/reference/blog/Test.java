@@ -10,7 +10,9 @@ import java.util.concurrent.*;
 public class Test {
 
     public static void main(String[] args) throws Exception {
-        Thread thread1 = new MyThread();
+        System.out.println(1 << 16);
+        
+        /*Thread thread1 = new MyThread();
         thread1.start();
 
         Thread thread2 = new Thread(new MyRunnable());
@@ -21,7 +23,7 @@ public class Test {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(future);
         System.out.println(future.get());
-        executorService.shutdown();
+        executorService.shutdown();*/
     }
 
     static class MyRunnable implements Runnable{
