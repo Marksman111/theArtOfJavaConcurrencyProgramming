@@ -60,7 +60,5 @@ public class CountTask extends RecursiveTask<Integer> {
         if (countTask.isCompletedAbnormally())
             System.out.println(countTask.getException());
 
-        if (countTask.isCompletedNormally())
-            System.out.println(countTask.getException());
     }
 }
