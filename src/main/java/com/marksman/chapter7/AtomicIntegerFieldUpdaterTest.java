@@ -1,4 +1,4 @@
-package com.marksman.chapter6;
+package com.marksman.chapter7;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
